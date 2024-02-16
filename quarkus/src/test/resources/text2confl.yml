@@ -1,0 +1,4 @@
+markdown:
+  diagrams:
+    kroki:
+      server: http://kroki:8000
