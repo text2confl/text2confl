@@ -5,7 +5,7 @@
     <parent>
         <groupId>io.github.text2confl</groupId>
         <artifactId>text2confl-parent</artifactId>
-        <version>0.16.2-SNAPSHOT</version>
+        <version>0.16.3-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -15,7 +15,7 @@
 
     <properties>
         <flexmark.version>0.64.8</flexmark.version>
-        <asciidoctorj.version>2.5.11</asciidoctorj.version>
+        <asciidoctorj.version>3.0.0-alpha.2</asciidoctorj.version>
         <asciidoctorj-diagram.version>2.2.17</asciidoctorj-diagram.version>
     </properties>
 
