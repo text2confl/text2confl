@@ -48,26 +48,24 @@ class AsciidocParser(
     private fun headerParsingOptions() = parserOptions { }
 
     fun parseDocument(file: Path, parameters: AsciidocRenderingParameters): Document {
-        return ADOC.loadFile(file.toFile(), htmlConversionOptions(createAttributes(parameters)))
+        return ADOC.loadFile(file.toFile(), htmlConversionOptions(parameters))
     }
 
     fun parseDocument(source: String, parameters: AsciidocRenderingParameters): Document {
-        return ADOC.load(source, htmlConversionOptions(createAttributes(parameters)))
+        return ADOC.load(source, htmlConversionOptions(parameters))
     }
 
-    private fun createAttributes(parameters: AsciidocRenderingParameters) = mapOf(
-        "t2c-language-mapper" to parameters.languageMapper,
-        "t2c-ref-provider" to parameters.referenceProvider,
-        "t2c-attachments-collector" to parameters.attachmentsCollector,
-        "t2c-space" to parameters.space,
-        "t2c-decoder" to Converter,
-        "idseparator" to "-",
-        "idprefix" to ""
-    ) + config.attributes + parameters.extraAttrs
-
-    private fun htmlConversionOptions(attrs: Map<String, Any?>) = parserOptions {
+    private fun htmlConversionOptions(parameters: AsciidocRenderingParameters) = parserOptions {
+        //TODO  Add those config.attributes + parameters.extraAttrs
         attributes(
-            Attributes.builder().attributes(attrs)
+            Attributes.builder()
+                    .attribute("t2c-language-mapper",parameters.languageMapper)
+                    .attribute( "t2c-ref-provider",parameters.referenceProvider)
+                    .attribute("t2c-attachments-collector", parameters.attachmentsCollector)
+                    .attribute("t2c-space",parameters.space)
+                    .attribute("t2c-decoder",Converter)
+                    .attribute("idseparator","-")
+                    .attribute("idprefix", "")
                 .sourceHighlighter("none")
                 .build()
         )
