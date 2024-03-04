@@ -123,7 +123,7 @@ internal class ServiceProviderImplTest {
 
         val result = provider.createPageExporter(client, true)
 
-        assertThat(result.client).isSameAs(client)
+        assertThat(result.client).isSameInstanceAs(client)
         assertThat(result.saveContentSource).isTrue()
     }
 }
