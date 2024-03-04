@@ -43,7 +43,7 @@ class ReferenceProviderImpl(private val basePath: Path, documents: Map<Path, Pag
     ReferenceProvider {
 
     companion object {
-        private const val URI_DETECTOR = "^(https?|ftp)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;'()]*[-a-zA-Z0-9+&@#/%=~_|]"
+        private const val URI_DETECTOR = "^(https?|ftp)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;'()\\[\\]]*[-a-zA-Z0-9+&@#/%=~_|]"
         private const val MAILTO_DETECTOR = "mailto:"
         private const val LOCALHOST_DETECTOR = "localhost:"
 
@@ -77,8 +77,12 @@ class ReferenceProviderImpl(private val basePath: Path, documents: Map<Path, Pag
             val document = normalizedDocs[targetPath]?.title ?: return null
             return Xref(document, anchor)
 
+        } catch (ex : IllegalArgumentException){
+            logger.error { "Failed to resolve : $refTo  from $source with ref : $ref" }
+            logger.error { ex.message }
+            throw ex
         } catch (ex: InvalidPathException){
-            logger.error { "Failed to resolve : $refTo  from $source" }
+            logger.error { "Failed to resolve : $refTo  from $source with ref : $ref" }
             logger.error { ex.message }
             return null
         }

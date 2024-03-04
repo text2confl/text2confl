@@ -142,4 +142,11 @@ internal class ReferenceProviderImplTest {
         assertThat(result).isNull()
     }
 
+    @Test
+    internal fun `Square Brackets url resolution`() {
+        val result = providerImpl.resolveReference(Path("docs/one.md"), "https://github.com/handle/[]/case")
+
+        assertThat(result).isNull()
+    }
+
 }
