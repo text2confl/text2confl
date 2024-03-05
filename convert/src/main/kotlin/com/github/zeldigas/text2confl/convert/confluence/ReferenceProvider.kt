@@ -77,6 +77,10 @@ class ReferenceProviderImpl(private val basePath: Path, documents: Map<Path, Pag
             val document = normalizedDocs[targetPath]?.title ?: return null
             return Xref(document, anchor)
 
+        } catch (ex : InvalidPathException){
+            logger.error { "Failed to resolve : $refTo  from $source with ref : $ref" }
+            logger.error { ex.message }
+            return null
         } catch (ex : IllegalArgumentException){
             logger.error { "Failed to resolve : $refTo  from $source with ref : $ref" }
             logger.error { ex.message }
