@@ -54,6 +54,7 @@
         <module>confluence-client</module>
         <module>core</module>
         <module>cli</module>
+        <module>gem-kroki</module>
     </modules>
 
     <build>

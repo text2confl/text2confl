@@ -14,12 +14,18 @@
     <description>Conversion to Confluence Storage Format</description>
 
     <properties>
-        <flexmark.version>0.64.8</flexmark.version>
+        <flexmark.version>0.64.4</flexmark.version>
         <asciidoctorj.version>2.5.12</asciidoctorj.version>
         <asciidoctorj-diagram.version>2.3.0</asciidoctorj-diagram.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>com.github.zeldigas.confluence</groupId>
+            <artifactId>gem-kroki</artifactId>
+            <version>${project.version}</version>
+            <scope>runtime</scope>
+        </dependency>
         <!--markdown libraries-->
         <dependency>
             <!--keep it here to tell core dep from all extensions-->
@@ -106,6 +112,7 @@
             <artifactId>jsoup</artifactId>
             <version>1.17.2</version>
         </dependency>
+
         <!--common libraries-->
 
         <dependency>
