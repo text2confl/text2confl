@@ -21,8 +21,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.github.zeldigas.confluence</groupId>
-            <artifactId>gem-kroki</artifactId>
+            <groupId>io.github.text2confl</groupId>
+            <artifactId>text2confl-gem-kroki</artifactId>
             <version>${project.version}</version>
             <scope>runtime</scope>
         </dependency>

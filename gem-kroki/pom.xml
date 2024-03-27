@@ -5,23 +5,19 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>parent</artifactId>
-        <groupId>com.github.zeldigas.confluence</groupId>
-        <version>1.0.0-SNAPSHOT</version>
+        <groupId>io.github.text2confl</groupId>
+        <artifactId>text2confl-parent</artifactId>
+        <version>0.16.3-SNAPSHOT</version>
     </parent>
 
-    <artifactId>gem-kroki</artifactId>
-    <version>1.0.0</version>
-
+    <artifactId>text2confl-gem-kroki</artifactId>
+    <name>Text2Confl Gem Kroki</name>
     <description>Module that provides asciidoctor-kroki gem as jar dependency, just like we have for
         asciidoctor-diagram
     </description>
 
     <properties>
         <kroki.version>0.10.0<!--renovate dependency=asciidoctor-kroki --></kroki.version>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
     <dependencies>
