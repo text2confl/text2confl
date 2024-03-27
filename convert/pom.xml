@@ -13,8 +13,8 @@
 
     <properties>
         <flexmark.version>0.64.4</flexmark.version>
-        <asciidoctorj.version>2.5.11</asciidoctorj.version>
-        <asciidoctorj-diagram.version>2.2.14</asciidoctorj-diagram.version>
+        <asciidoctorj.version>2.5.12</asciidoctorj.version>
+        <asciidoctorj-diagram.version>2.3.0</asciidoctorj-diagram.version>
     </properties>
 
     <dependencies>
@@ -97,6 +97,12 @@
             <groupId>org.asciidoctor</groupId>
             <artifactId>asciidoctorj-diagram</artifactId>
             <version>${asciidoctorj-diagram.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.zeldigas.confluence</groupId>
+            <artifactId>gem-kroki</artifactId>
+            <version>1.0.0</version>
             <scope>runtime</scope>
         </dependency>
         <!--common libraries-->
