@@ -9,6 +9,7 @@ import com.github.zeldigas.text2confl.core.config.Cleanup
 import io.github.oshai.kotlinlogging.KotlinLogging
 import io.ktor.client.network.sockets.*
 import kotlinx.coroutines.*
+import java.io.EOFException
 
 
 class ContentUploader(
@@ -182,18 +183,23 @@ class ContentUploader(
 
         val managedTitles = children.map { it.title }.toSet()
 
-        val pagesForDeletion = pageUploadOperations.findChildPages(pageId)
-            .filter { it.title !in managedTitles }
-            .filter { cleanup == Cleanup.All || it.managedPage && sameTenant(it) }
+        logger.info { "Searching child pages, id=${pageId}" }
+        try {
+            val pagesForDeletion = pageUploadOperations.findChildPages(pageId)
+                .filter { it.title !in managedTitles }
+                .filter { cleanup == Cleanup.All || it.managedPage && sameTenant(it) }
 
-        coroutineScope {
-            for (page in pagesForDeletion) {
-                launch {
-                    logger.info { "Deleting orphaned page and subpages: title=${page.title}, id=${page.id}" }
-                    val deletedPages = pageUploadOperations.deletePageWithChildren(page)
-                    tracker.pagesDeleted(page, deletedPages)
+            coroutineScope {
+                for (page in pagesForDeletion) {
+                    launch {
+                        logger.info { "Deleting orphaned page and subpages: title=${page.title}, id=${page.id}" }
+                        val deletedPages = pageUploadOperations.deletePageWithChildren(page)
+                        tracker.pagesDeleted(page, deletedPages)
+                    }
                 }
             }
+        } catch (ex: EOFException){
+            logger.error { ex.message }
         }
     }
 
