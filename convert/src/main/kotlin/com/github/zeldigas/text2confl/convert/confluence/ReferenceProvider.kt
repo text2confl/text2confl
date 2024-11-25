@@ -84,7 +84,7 @@ class ReferenceProviderImpl(private val basePath: Path, documents: Map<Path, Pag
         } catch (ex : IllegalArgumentException){
             logger.error { "Failed to resolve : $refTo  from $source with ref : $ref" }
             logger.error { ex.message }
-            throw ex
+            return null
         } catch (ex: InvalidPathException){
             logger.error { "Failed to resolve : $refTo  from $source with ref : $ref" }
             logger.error { ex.message }
